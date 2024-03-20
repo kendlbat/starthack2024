@@ -1,0 +1,22 @@
+services:
+  backend:
+    image: dei_mutta # placeholder
+    container_name: nightjetenjoyers_backend
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres_database
+    # environment:
+
+  postgres_database:
+    image: postgres
+    container_name: nightjetenjoyers_database
+    restart: always
+    shm_size: 128mb
+    environment:
+      POSTGRES_PASSWORD: example
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432
