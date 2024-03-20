@@ -24,4 +24,4 @@ EXPOSE 8080
 # stopsignal to terminate
 STOPSIGNAL SIGINT
 
-ENTRYPOINT [ "node", "server.js" ]
+ENTRYPOINT [ "npm", "start" ]
