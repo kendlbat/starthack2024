@@ -1,42 +1,68 @@
-DROP TABLE numberplate CASCADE CONSTRAINTS;
-DROP TABLE gate CASCADE CONSTRAINTS;
-
-DROP SEQUENCE sq_gate_id;
-DROP SEQUENCE sq_numberplate_id;
-
-
-CREATE SEQUENCE sq_gate_id;
-CREATE SEQUENCE sq_numberplate_id;
-
-CREATE TABLE gate (
-    id    INTEGER,
-    mac   VARCHAR2(20)  NOT NULL,
-    topic VARCHAR2(200) NOT NULL,
-
-    CONSTRAINT pk_gate   PRIMARY KEY(id),
-    CONSTRAINT uq_mac    UNIQUE(mac),
-    CONSTRAINT uq_topic  UNIQUE(topic)
+-- Table for 'Students'
+CREATE TABLE Students (
+    student_id SERIAL PRIMARY KEY,
+    student_name VARCHAR(100),
+    -- Add more student-specific fields here
 );
 
-CREATE TABLE numberplate (
-    id          INTEGER,
-    gate_id     INTEGER      NOT NULL,
-    numberplate VARCHAR2(20) NOT NULL,
-    startdate   DATE,
-    enddate     DATE,
-
-    CONSTRAINT pk_numberplate PRIMARY KEY(id),
-    CONSTRAINT uq_np_gate     UNIQUE(gate_id,numberplate),
-    CONSTRAINT fk_np_gate     FOREIGN KEY(gate_id) REFERENCES gate(id)
+-- Table for 'Teachers'
+CREATE TABLE Teachers (
+    teacher_usr VARCHAR(50) PRIMARY KEY,
+    teacher_name VARCHAR(100) NOT NULL,
+    teacher_email VARCHAR(50) UNIQUE,
+    teacher_pwd VARCHAR(150) NOT NULL
+    -- Add more teacher-specific fields here
 );
 
-INSERT INTO gate VALUES(sq_gate_id.NEXTVAL,'maingate','/htlvil/5b/init/teame/gate/maingate');
-INSERT INTO gate VALUES(sq_gate_id.NEXTVAL,'soutgate','/htlvil/5b/init/teame/gate/southgate');
-INSERT INTO gate VALUES(sq_gate_id.NEXTVAL,'westgate','/htlvil/5b/init/teame/gate/westgate');
+-- Table for 'SchoolClasses'
+CREATE TABLE SchoolClasses (
+    class_name VARCHAR(50) PRIMARY KEY,
+    class_year INT PRIMARY KEY
 
-INSERT INTO NUMBERPLATE VALUES(sq_numberplate_id.NEXTVAL,1,'DEF1011',to_date('2023-12-01' default null on conversion error, 'YYYY-MM-dd'),to_date('2023-12-07' default null on conversion error, 'YYYY-MM-dd'));
-INSERT INTO NUMBERPLATE VALUES(sq_numberplate_id.NEXTVAL,2,'SQL2323',to_date('2024-03-23' default null on conversion error, 'YYYY-MM-dd'),to_date('2026-12-07' default null on conversion error, 'YYYY-MM-dd'));
-INSERT INTO NUMBERPLATE VALUES(sq_numberplate_id.NEXTVAL,3,'HUN1823',to_date('2023-12-24' default null on conversion error, 'YYYY-MM-dd'),to_date('2023-12-31' default null on conversion error, 'YYYY-MM-dd'));
-INSERT INTO NUMBERPLATE VALUES(sq_numberplate_id.NEXTVAL,1,'GHI9832',to_date('2023-12-01' default null on conversion error, 'YYYY-MM-dd'),to_date('2050-01-01' default null on conversion error, 'YYYY-MM-dd'));
+);
+
+-- Table for 'Attendances'
+CREATE TABLE Attendances (
+    student_id INT REFERENCES Students(student_id) PRIMARY KEY,
+    class_name VARCHAR(50) REFERENCES SchoolClasses(class_name,class_year) PRIMARY KEY,
+    class_year INT REFERENCES SchoolClasses(class_name,class_year) PRIMARY KEY
+);
+
+CREATE TABLE Teaches(
+    teacher_usr VARCHAR(50) REFERENCES Teachers(teacher_usr) PRIMARY KEY,
+    class_name VARCHAR(50) REFERENCES SchoolClasses(class_name,class_year) PRIMARY KEY,
+    class_year INT REFERENCES SchoolClasses(class_name,class_year) PRIMARY KEY
+);
+
+
+-- Table for 'Documents'
+CREATE TABLE Documents (
+    document_id SERIAL PRIMARY KEY,
+    student_id INT REFERENCES Students(student_id),
+    class_name VARCHAR(50) REFERENCES SchoolClasses(class_name,class_year) PRIMARY KEY,
+    class_year INT REFERENCES SchoolClasses(class_name,class_year) PRIMARY KEY,
+    doc_date DATE,
+    doc_blob BYTEA 
+);
+
+
+-- Table for 'Gradings'
+CREATE TABLE Gradings (
+    grading_id SERIAL PRIMARY KEY,
+    student_id INT REFERENCES Students(student_id),
+    class_name INT REFERENCES SchoolClasses(class_name,class_year),
+    class_year INT REFERENCES SchoolClasses(class_name,class_year),
+    teacher_usr VARCHAR(50) REFERENCES Teachers(teacher_usr),
+    document_id INT REFERENCES Documents(document_id),
+
+    subject_name VARCHAR(30) NOT NULL,
+    test_nr INT NOT NULL,
+    task_nr VARCHAR(50),
+    learning_goal VARCHAR(100),
+    goal_result INT CHECK(goal_result >= 1 AND goal_result >=7) NOT NULL,
+    weights REAL,
+    comment VARCHAR(500)
+
+);
 
 COMMIT;
