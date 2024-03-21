@@ -1,10 +1,10 @@
-class HttpError extends Error {
+export class HttpError extends Error {
     constructor() {
         super();
     }
 }
 
-class InternalServerError extends HttpError {
+export class InternalServerError extends HttpError {
     constructor(msg = "internal server error") {
         super();
         this.code = 500;
@@ -12,7 +12,7 @@ class InternalServerError extends HttpError {
     }
 }
 
-class BadRequest extends HttpError {
+export class BadRequest extends HttpError {
     constructor(msg = "bad request") {
         super();
         this.code = 400;
@@ -20,12 +20,10 @@ class BadRequest extends HttpError {
     }
 }
 
-class NotFound extends HttpError {
+export class NotFound extends HttpError {
     constructor(msg = "resource not found") {
         super();
         this.code = 404;
         this.message = msg;
     }
 }
-
-module.exports = { HttpError, InternalServerError, BadRequest, NotFound };

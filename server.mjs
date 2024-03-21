@@ -4,17 +4,11 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-import { errorHandler } from "./errors/error-handler.js";
+import { errorHandler } from "./errors/error-handler.mjs";
 import apiRouter from "./api/index.mjs";
 
 const PORT = process.env.PORT || 3000;
 const HOSTNAME = process.env.HOSTNAME || "0.0.0.0";
-
-process.env.POSTGRES_HOST = "schaepplidb";
-process.env.POSTGRES_USER = "schaeppli";
-process.env.POSTGRES_PASSWORD =
-    "tiajeiY6saeX9faaleexe0eeQuitahl4UShie5Aiqua4ahgei1eitiNgiejai7TohlaWa1baime";
-process.env.POSTGRES_PORT = 5432;
 
 async function main() {
     console.log("starting server ...");
