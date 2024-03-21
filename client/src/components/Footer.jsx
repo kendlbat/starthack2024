@@ -1,14 +1,20 @@
 import { Link } from "react-router-dom";
-import { Footer } from "flowbite-react";
+import { Footer, FooterBrand, FooterCopyright, FooterLink } from "flowbite-react";
 
 export default function CustomFooter() {
     return (
-        <Footer container>
+        <Footer container className="fixed bottom-0 w-full l-0">
           <Footer.Copyright href="#" by="Nightjet Enjoyers" year={2024} />
+          <div className="text-center py-2">
+                <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+                    An Äppli a day keeps the tutor away!
+                </span>
+            </div>
           <Footer.LinkGroup>
-            <Footer.Link href="#">About</Footer.Link>
-            <Footer.Link href="#">Licensing</Footer.Link>
-            <Footer.Link href="#">Contact</Footer.Link>
+            <FooterLink href="https://www.linkedin.com/in/kendlbat/">Tobias Kendlbacher</FooterLink> 
+            <FooterLink>Markus Schertler</FooterLink> 
+            <FooterLink>Adrián Pintér</FooterLink>
+            <FooterLink href="https://www.linkedin.com/in/andreas-stettin/">Andreas Stettin</FooterLink>
           </Footer.LinkGroup>
         </Footer>
       );

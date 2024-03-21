@@ -10,8 +10,8 @@ const Layout = () => {
                 <Navbar />
                 <main className="h-100 p-2">
                     <Outlet />
+                    <Footer/>
                 </main>
-                <Footer/>
             </div>
         </Authenticated>
     );
