@@ -7,7 +7,8 @@
             "driver": "PostgreSQL",
             "name": "localhost",
             "database": "schaepplidb",
-            "username": "schaeppli"
+            "username": "schaeppli",
+            "password": "tiajeiY6saeX9faaleexe0eeQuitahl4UShie5Aiqua4ahgei1eitiNgiejai7TohlaWa1baime"
         }
     ]
 }

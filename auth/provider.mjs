@@ -2,7 +2,7 @@ import Keycloak from "@auth/core/providers/keycloak";
 
 const KeycloakProvider = Keycloak({
     name: "keycloak",
-    issuer: "http://192.168.0.105:8080/realms/schaeppli",
+    issuer: "http://localhost:8080/realms/schaeppli",
     clientId: "schaeppli",
     // WHEN DEPLOYING: Replace these with environment variables
     // Just here because we don't have the time for HTTPS / keycloak prod
@@ -16,5 +16,19 @@ const KeycloakProvider = Keycloak({
         };
     },
 });
+
+/**
+ * @type {import("@auth/core").AuthConfig}
+ */
+export const authConfig = {
+    providers: [KeycloakProvider],
+    basePath: "/api/auth",
+    callbacks: {
+        session({ session, token }) {
+            console.log(session, token);
+            return session;
+        },
+    },
+};
 
 export default KeycloakProvider;
