@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "cross-env AUTH_SECRET=ohsh1eiYeisael8IeToh7Yax5iiBooL1thahghee node server.mjs",
-        "dev": "cross-env AUTH_SECRET=ohsh1eiYeisael8IeToh7Yax5iiBooL1thahghee nodemon server.mjs"
+        "dev": "cross-env POSTGRES_USER=schaeppli POSTGRES_DB=schaepplidb POSTGRES_PASSWORD=tiajeiY6saeX9faaleexe0eeQuitahl4UShie5Aiqua4ahgei1eitiNgiejai7TohlaWa1baime AUTH_SECRET=ohsh1eiYeisael8IeToh7Yax5iiBooL1thahghee nodemon server.mjs"
     },
     "keywords": [],
     "author": "Nightjet Enjoyers - START HACK 2024",
@@ -17,6 +17,10 @@
         "@auth/core": "^0.28.0",
         "@auth/express": "^0.5.0",
         "cross-env": "^7.0.3",
-        "express": "^4.19.1"
+        "dotenv": "^16.4.5",
+        "express": "^4.19.1",
+        "knex": "^3.1.0",
+        "multer": "1.4.5-lts.1",
+        "pg": "^8.11.3"
     }
 }
