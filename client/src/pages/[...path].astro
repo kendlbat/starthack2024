@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import App from '../components/App.jsx';
+
+export function getStaticPaths() {
+	return [undefined, "/plan", "/evaluate", "/review"].map(p => ({ params: { path: p } }));
+}
+
+const { path } = Astro.params;
+
+---
+
+<Layout title="Schäppli">
+	<App client:only="react" />
+</Layout>

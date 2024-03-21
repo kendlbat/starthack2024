@@ -1,8 +1,8 @@
 import { Router } from "express";
 const secureRouter = Router();
 
-secureRouter.get("/hello", (req, res) => {
-    res.send("Hello, secure world!");
+secureRouter.get("/session", (req, res) => {
+    res.json(res.locals.session);
 });
 
 export default secureRouter;
