@@ -7,7 +7,7 @@ const Layout = () => {
         <Authenticated>
             <div>
                 <Navbar />
-                <main className="h-100">
+                <main className="h-100 p-2">
                     <Outlet />
                 </main>
             </div>

@@ -5,3 +5,5 @@ package-lock.json
 data/*
 !data/.gitkeep
 !data/keycloak
+
+.env

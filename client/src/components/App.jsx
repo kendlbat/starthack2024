@@ -9,6 +9,11 @@ import {
 import Layout from "./Layout";
 import React, { Suspense, useEffect } from "react";
 import SessionProvider from "./SessionProvider";
+import EvaluatePage from "./pages/EvaluatePage";
+import PlanPage from "./pages/PlanPage";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
     {
@@ -21,11 +26,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "plan",
-                element: <div>Plan</div>,
+                element: <PlanPage />,
             },
             {
                 path: "evaluate",
-                element: <div>Evaluate</div>,
+                element: <EvaluatePage />,
             },
             {
                 path: "review",
@@ -38,9 +43,11 @@ const router = createBrowserRouter([
 const App = () => {
     return (
         <React.StrictMode>
-            <SessionProvider>
-                <RouterProvider router={router} />
-            </SessionProvider>
+            <QueryClientProvider client={queryClient}>
+                <SessionProvider>
+                    <RouterProvider router={router} />
+                </SessionProvider>
+            </QueryClientProvider>
         </React.StrictMode>
     );
 };

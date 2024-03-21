@@ -10,6 +10,7 @@ const KeycloakProvider = Keycloak({
     // authorization: "http://localhost:8080/realms/master/protocol/openid-connect/auth",
     // token: "http://localhost:8080/realms/master/protocol/openid-connect/token",
     profile(profile) {
+        console.log(profile);
         return {
             ...profile,
         };
