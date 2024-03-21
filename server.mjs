@@ -1,5 +1,8 @@
 import express from "express";
 import path from "node:path";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 import { errorHandler } from "./errors/error-handler.js";
 import apiRouter from "./api/index.mjs";
