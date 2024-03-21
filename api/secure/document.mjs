@@ -40,6 +40,11 @@ documentRouter.get("/:id", async (req, res, next) => {
     res.json(result);
 });
 
+documentRouter.delete("/:id", async (req, res) => {
+    const result = await db.delete().where({document_id: parseInt(req.params.id) || -1}).from("documents");
+    res.json(result);
+});
+
 documentRouter.get("/file/:id", async (req, res, next) => {
     const { doc_type, doc_blob } = (await db.select(["doc_type","doc_blob"]).where({document_id: parseInt(req.params.id) || -1}).from("documents"))[0];
     
