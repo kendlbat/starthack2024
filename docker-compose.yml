@@ -1,13 +1,11 @@
 services:
-    # backend:
-    #     build: .
-    #     container_name: nightjetenjoyers_backend
-    #     restart: always
-    #     ports:
-    #         - "3000:3000"
-    #     depends_on:
-    #         - postgres
-    # environment:
+    backend:
+        build: .
+        restart: always
+        ports:
+            - "3000:3000"
+        depends_on:
+            - postgres
 
     postgres:
         image: postgres
