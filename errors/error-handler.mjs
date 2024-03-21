@@ -1,6 +1,6 @@
-const { HttpError, InternalServerError } = require("./app-errors");
+import { HttpError, InternalServerError } from "./app-errors.mjs";
 
-function errorHandler(originalError, _req, res, _next) {
+export function errorHandler(originalError, _req, res, _next) {
     let errorToSend;
 
     switch (true) {
@@ -21,5 +21,3 @@ function errorHandler(originalError, _req, res, _next) {
 
     res.status(errorToSend.code).json(errorToSend);
 }
-
-module.exports = { errorHandler };

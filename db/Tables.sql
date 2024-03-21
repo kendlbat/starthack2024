@@ -48,8 +48,10 @@ CREATE TABLE Documents (
     student_id INT,
     class_name VARCHAR(50),
     class_year INT,
-    doc_date DATE,
+    doc_date DATE DEFAULT CURRENT_DATE,
     doc_blob BYTEA,
+    doc_type VARCHAR(50),
+    doc_name VARCHAR(200),
 
     CONSTRAINT fk_documents_at FOREIGN KEY (class_name, class_year, student_id) REFERENCES Attendances(class_name,class_year,student_id)
 );
