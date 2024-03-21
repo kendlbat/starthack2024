@@ -1,5 +1,10 @@
 import { Router } from "express";
 import documentRouter from "./document.mjs";
+import studentRouter from "./student.mjs";
+import teacherRouter from "./teacher.mjs";
+import schoolClassesRouter from "./schoolClasses.mjs";
+import attendanceRouter from "./attendance.mjs";
+import teachesRouter from "./teaches.mjs";
 const secureRouter = Router();
 
 secureRouter.get("/session", (req, res) => {
@@ -32,5 +37,10 @@ secureRouter.get("/me", (req, res) => {
 });
 
 secureRouter.use("/document", documentRouter);
+secureRouter.use("/student", studentRouter);
+secureRouter.use("/teacher",teacherRouter);
+secureRouter.use("/classes",schoolClassesRouter);
+secureRouter.use("/attendance", attendanceRouter);
+secureRouter.use("/teaches", teachesRouter);
 
 export default secureRouter;
