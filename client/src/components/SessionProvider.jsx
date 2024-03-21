@@ -8,6 +8,7 @@ export default function SessionProvider({ children }) {
     /// Fetch session
     let [fetchedSession, setFetchedSession] = useState(false);
     const { isPending, error, data } = useQuery({
+        queryKey: ["session"],
         queryFn: () => {
             fetchSession().then((s) => {
                 session = s;

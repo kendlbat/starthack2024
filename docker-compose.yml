@@ -11,6 +11,7 @@ services:
 
     postgres:
         image: postgres
+        container_name: postgres
         restart: always
         shm_size: 128mb
         environment:
@@ -22,7 +23,7 @@ services:
         expose:
             - 5432
         volumes:
-            - ./docker/postgres_init:/docker-entrypoint-initdb.d
+            - ./docker/postgres/multiple-databases.sh:/docker-entrypoint-initdb.d/multiple-databases.sh
             - ./data/postgres:/var/lib/postgresql/data
     auth:
         image: quay.io/keycloak/keycloak
@@ -36,9 +37,7 @@ services:
             KC_HOSTNAME: localhost
             KEYCLOAK_ADMIN: admin
             KEYCLOAK_ADMIN_PASSWORD: admin
-        command:
-            - start-dev
-            - --import-realm
+        command: "start-dev --import-realm"
         volumes:
             - ./data/keycloak/realm.json:/opt/keycloak/data/import/realm.json
         depends_on:

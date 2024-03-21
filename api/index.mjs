@@ -25,7 +25,6 @@ async function authSession(req, res, next) {
 }
 
 async function protect(req, res, next) {
-    return next();
     if (!res.locals.session) {
         res.status(401).send("Unauthorized");
         return;
