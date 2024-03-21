@@ -1,0 +1,22 @@
+{
+    "name": "schaeppli-server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "cross-env AUTH_SECRET=ohsh1eiYeisael8IeToh7Yax5iiBooL1thahghee node server.mjs",
+        "dev": "cross-env AUTH_SECRET=ohsh1eiYeisael8IeToh7Yax5iiBooL1thahghee nodemon server.mjs"
+    },
+    "keywords": [],
+    "author": "Nightjet Enjoyers - START HACK 2024",
+    "license": "ISC",
+    "devDependencies": {
+        "nodemon": "^3.1.0"
+    },
+    "dependencies": {
+        "@auth/core": "^0.28.0",
+        "@auth/express": "^0.5.0",
+        "cross-env": "^7.0.3",
+        "express": "^4.19.1"
+    }
+}
