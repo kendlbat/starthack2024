@@ -17,6 +17,7 @@
         "@auth/core": "^0.28.0",
         "@auth/express": "^0.5.0",
         "cross-env": "^7.0.3",
-        "express": "^4.19.1"
+        "express": "^4.19.1",
+        "pg": "^8.11.3"
     }
 }
