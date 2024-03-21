@@ -27,6 +27,13 @@ documentRouter.post("/", upload.any(), async (req, res, next) => {
     res.json(result);
 });
 
-documentRouter.get("/:id", async (req, res) => {});
+documentRouter.get("/:id", async (req, res, next) => {
+    const { doc_type, doc_blob} = (await db.select(["doc_type","doc_blob"]).where({document_id: parseInt(req.params.id) || -1}).from("documents"))[0];
+    
+    if (!doc_type || !doc_blob) return next(new BadRequest());
+
+    res.setHeader("content-type", doc_type);
+    res.send(doc_blob);
+});
 
 export default documentRouter;
