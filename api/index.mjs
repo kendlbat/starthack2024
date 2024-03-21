@@ -3,12 +3,9 @@ const apiRouter = Router();
 import secureRouter from "./secure/index.mjs";
 
 import { ExpressAuth, getSession } from "@auth/express";
-import KeycloakProvider, { authConfig } from "../auth/provider.mjs";
+import KeycloakProvider, { authConfig, authSession } from "../auth/provider.mjs";
 
-async function authSession(req, res, next) {
-    res.locals.session = await getSession(req, authConfig);
-    next();
-}
+
 
 async function protect(req, res, next) {
     if (!res.locals.session) {
@@ -19,9 +16,7 @@ async function protect(req, res, next) {
 }
 
 // Ghosty library
-apiRouter.post("/auth/signout/signout", authSession, async (req, res) => {
-    res.redirect(307, "/api/auth/signout");
-});
+
 
 // Login: GET http://localhost:3000/api/auth/signin/keycloak
 // Logout: POST http://localhost:3000/api/auth/signout

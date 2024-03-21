@@ -1,4 +1,5 @@
 import Keycloak from "@auth/core/providers/keycloak";
+import { ExpressAuth, getSession } from "@auth/express";
 
 const KeycloakProvider = Keycloak({
     name: "keycloak",
@@ -30,5 +31,10 @@ export const authConfig = {
         },
     },
 };
+
+export async function authSession(req, res, next) {
+    res.locals.session = await getSession(req, authConfig);
+    next();
+}
 
 export default KeycloakProvider;
