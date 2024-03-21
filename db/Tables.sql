@@ -82,7 +82,7 @@ CREATE TABLE Gradings (
     teacher_usr VARCHAR(50) REFERENCES Teachers(teacher_usr),
     document_id INT REFERENCES Documents(document_id),
 
-    uid VARCHAR(100) REFERENCES Competences(uid),
+    competences_uid VARCHAR(100) REFERENCES Competences(uid),
 
     subject_name VARCHAR(30) NOT NULL,
     test_nr INT NOT NULL,

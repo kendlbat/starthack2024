@@ -2,9 +2,9 @@ import express from "express";
 import db from "../../db/db-manager.mjs";
 import { BadRequest, NotFound } from "../../errors/app-errors.mjs";
 
-const schoolClassesRouter = express.Router();
+const schoolClassRouter = express.Router();
 
-schoolClassesRouter.post("/", async (req, res, next) => {
+schoolClassRouter.post("/", async (req, res, next) => {
     try {
         const result = await db
             .insert(req.body)
@@ -16,7 +16,7 @@ schoolClassesRouter.post("/", async (req, res, next) => {
     }
 });
 
-schoolClassesRouter.get("/", async (_req, res) => {
+schoolClassRouter.get("/", async (_req, res) => {
     const result = await db
         .select(["class_name","class_year"])
         .from("schoolclasses");
@@ -24,7 +24,7 @@ schoolClassesRouter.get("/", async (_req, res) => {
     res.json(result);
 });
 
-schoolClassesRouter.get("/:class_year/:class_name", async (req, res, next) => {
+schoolClassRouter.get("/:class_year/:class_name", async (req, res, next) => {
     const result = await db
         .select(["class_name","class_year"])
         .from("schoolclasses")
@@ -35,9 +35,9 @@ schoolClassesRouter.get("/:class_year/:class_name", async (req, res, next) => {
     res.json(result[0]);
 });
 
-schoolClassesRouter.delete("/:class_year/:class_name", async (req, res) => {
+schoolClassRouter.delete("/:class_year/:class_name", async (req, res) => {
     const result = await db.delete().where({"class_name": req.params.class_name,"class_year": parseInt(req.params.class_year) || -1}).from("schoolclasses");
     res.json(result);
 });
 
-export default schoolClassesRouter;
+export default schoolClassRouter;
