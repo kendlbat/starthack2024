@@ -15,7 +15,7 @@ export default function CustomFooter() {
                     An Äppli a day keeps the tutor away!
                 </span>
             </div>
-            <Footer.LinkGroup>
+            <Footer.LinkGroup className="flex flex-col">
                 <FooterLink href="https://www.linkedin.com/in/kendlbat/">
                     Tobias Kendlbacher
                 </FooterLink>
