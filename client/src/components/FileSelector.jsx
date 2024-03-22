@@ -3,27 +3,18 @@ import React, { useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import FileDropzone from "./FileDropzone";
 
-// Styling for the input
-const inputStyle = {
-    border: "2px solid #007bff",
-    borderRadius: "5px",
-    padding: "10px",
-    margin: "5px",
-    cursor: "pointer",
+// Added styling for the scrollable container
+const scrollableContainerStyle = {
+  maxHeight: "700px", // Set a maximum height for the scrollable area
+  overflowY: "scroll", // Enable vertical scrolling
+  width: "100%", // Ensure the container takes up the full width of its parent
+  border: "1px solid #ccc", // Optional: adds a border to make the container visually clear
+  borderRadius: "5px", // Optional: rounds the corners of the border
 };
 
-// Styling for the label
-const labelStyle = {
-    backgroundColor: "#007bff",
-    color: "white",
-    padding: "10px 20px",
-    borderRadius: "5px",
-    cursor: "pointer",
-};
-
-const FileSelector = ({ setPhase, gradings, setGradings }) => {
+const FileSelector = ({ setPhase, gradings, setGradings,pdfPages,setPdfPages }) => {
     const [selectedFile, setSelectedFile] = useState(null);
-    const [pdfPages, setPdfPages] = useState([]);
+    
 
     const handleFileChange = async (event) => {
         const file = event.target.files[0];
@@ -66,8 +57,8 @@ const FileSelector = ({ setPhase, gradings, setGradings }) => {
     };
 
     return (
-        <div class="flex flex-col items-center h-full">
-            <div className="w-2/3 items-center justify-center flex pt-10">
+        <div className="flex flex-col items-center h-full overflow-auto">
+            <div className="w-2/3 items-center justify-center flex pt-10 overflow-auto">
                 <FileDropzone onChange={handleFileChange} />
             </div>
             {selectedFile && <p>File: {selectedFile.name}</p>}

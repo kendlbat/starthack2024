@@ -1,0 +1,4 @@
+.scrollable-content {
+    max-height: 90vh; /* Adjust based on your needs */
+    overflow-y: auto; /* This enables vertical scrolling */
+}
