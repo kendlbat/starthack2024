@@ -7,7 +7,7 @@ dotenv.config();
 import { errorHandler } from "./errors/error-handler.mjs";
 import apiRouter from "./api/index.mjs";
 import { ExpressAuth, getSession } from "@auth/express";
-import KeycloakProvider, { authConfig } from "./auth/provider.mjs";
+import KeycloakProvider, { authConfig, authSession } from "./auth/provider.mjs";
 
 const PORT = process.env.PORT || 3000;
 const HOSTNAME = process.env.HOSTNAME || "0.0.0.0";
@@ -28,6 +28,9 @@ async function main() {
     // Static file host
     app.use(express.static(path.join(".", "client", "dist")));
     app.use(express.json());
+    app.post("/api/auth/signout/signout", authSession, async (req, res) => {
+        res.redirect(307, "/api/auth/signout");
+    });
 
     app.use("/api/auth/*", ExpressAuth(authConfig));
     app.use("/api", apiRouter);
