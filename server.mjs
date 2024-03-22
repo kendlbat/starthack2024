@@ -28,13 +28,14 @@ async function main() {
     // Static file host
     app.use(express.static(path.join(".", "client", "dist")));
     app.use(express.json());
+
+    // Ghosty library
     app.post("/api/auth/signout/signout", authSession, async (req, res) => {
         res.redirect(307, "/api/auth/signout");
     });
 
     app.use("/api/auth/*", ExpressAuth(authConfig));
     app.use("/api", apiRouter);
-
 
     app.use(errorHandler);
 
