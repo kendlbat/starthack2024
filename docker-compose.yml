@@ -6,6 +6,12 @@ services:
             - "3000:3000"
         depends_on:
             - postgres
+        environment:
+            - AUTH_REDIRECT_PROXY_URL=http://localhost:3000/api/auth
+            - POSTGRES_USER=schaeppli
+            - POSTGRES_DB=schaepplidb
+            - POSTGRES_PASSWORD=tiajeiY6saeX9faaleexe0eeQuitahl4UShie5Aiqua4ahgei1eitiNgiejai7TohlaWa1baime
+            - AUTH_SECRET=ohsh1eiYeisael8IeToh7Yax5iiBooL1thahghee
 
     postgres:
         image: postgres

@@ -30,6 +30,7 @@ export const authConfig = {
             return session;
         },
     },
+    trustHost: true,
 };
 
 export async function authSession(req, res, next) {
