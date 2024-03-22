@@ -21,7 +21,7 @@ const labelStyle = {
     cursor: "pointer",
 };
 
-const FileSelector = () => {
+const FileSelector = ({ setPhase, gradings, setGradings }) => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [pdfPages, setPdfPages] = useState([]);
 
@@ -61,11 +61,12 @@ const FileSelector = () => {
                 .catch((error) => {
                     console.error("Error loading PDF:", error);
                 });
+            setPhase(2);
         }
     };
 
     return (
-        <div class="flex flex-col items-center h-full bg-gray-100">
+        <div class="flex flex-col items-center h-full">
             <div className="w-2/3 items-center justify-center flex pt-10">
                 <FileDropzone onChange={handleFileChange} />
             </div>
