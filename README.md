@@ -39,6 +39,7 @@ Start the docker containers using the following command.
 _When running the first time, you need to run this, wait for the database to initialize and keycloak to crash, then you have to restart the containers._
 
 ```sh
+docker compose build
 docker compose up -d
 ```
 
