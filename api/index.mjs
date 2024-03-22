@@ -3,9 +3,10 @@ const apiRouter = Router();
 import secureRouter from "./secure/index.mjs";
 
 import { ExpressAuth, getSession } from "@auth/express";
-import KeycloakProvider, { authConfig, authSession } from "../auth/provider.mjs";
-
-
+import KeycloakProvider, {
+    authConfig,
+    authSession,
+} from "../auth/provider.mjs";
 
 async function protect(req, res, next) {
     if (!res.locals.session) {
@@ -14,9 +15,6 @@ async function protect(req, res, next) {
     }
     next();
 }
-
-// Ghosty library
-
 
 // Login: GET http://localhost:3000/api/auth/signin/keycloak
 // Logout: POST http://localhost:3000/api/auth/signout
