@@ -1,5 +1,27 @@
+import { useState } from "react";
 import FileSelector from "../FileSelector";
+import AllocatePupils from "../AllocatePupils";
+import EnterGrading from "../EnterGrading";
 
 export default function EvaluatePage() {
-    return <FileSelector></FileSelector>;
+    let [phase, setPhase] = useState(1);
+
+    return (
+        <div>
+            {(()=> {
+                switch(phase) {
+                    case 1:
+                        return <FileSelector></FileSelector>
+                        
+                    case 2:
+                        return <AllocatePupils></AllocatePupils>
+                        
+                    case 3:
+                        return <EnterGrading></EnterGrading>
+
+                } 
+            })()}
+            
+        </div>
+    );
 }
