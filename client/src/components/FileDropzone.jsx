@@ -28,7 +28,7 @@ export default function FileDropzone({ onChange }) {
                         or drag and drop
                     </p>
                     <p className="text-xs text-gray-500 dark:text-gray-400">
-                        SVG, PNG, JPG or GIF (MAX. 800x400px)
+                        Upload exams here
                     </p>
                 </div>
                 <FileInput
