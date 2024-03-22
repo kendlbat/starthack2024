@@ -1,3 +1,5 @@
+import FileSelector from "../FileSelector";
+
 export default function EvaluatePage() {
-    return <></>;
+    return <FileSelector></FileSelector>;
 }
