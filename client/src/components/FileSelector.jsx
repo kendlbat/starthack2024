@@ -29,7 +29,7 @@ const labelStyle = {
   cursor: 'pointer',
 };
 
-const FileSelector = () => {
+const FileSelector = ({setPhase, gradings,setGradings}) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [pdfPages, setPdfPages] = useState([]);
 
@@ -59,6 +59,7 @@ const FileSelector = () => {
               pages.push(canvas.toDataURL('image/png'));
               if (pages.length === pdf.numPages) {
                 setPdfPages(pages);
+                
               }
             });
           });
@@ -66,6 +67,7 @@ const FileSelector = () => {
       }).catch(error => {
         console.error('Error loading PDF:', error);
       });
+      setPhase(2);
     }
   };
 
