@@ -63,7 +63,7 @@ export default function Kompetenzbereiche({ bc, unset }) {
                         {kbs.map((kb) => (
                             <TableRow
                                 key={kb.uid}
-                                className="cursor-pointer"
+                                className="cursor-pointer hover:bg-gray-100"
                                 onClick={(e) => {
                                     setSelectedKB(kb);
                                 }}

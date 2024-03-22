@@ -98,7 +98,7 @@ export default function Aufbaus({ bc, unset }) {
                         {abs.map((ab) => (
                             <TableRow
                                 key={ab.uid}
-                                className="cursor-pointer"
+                                className="cursor-pointer hover:bg-gray-100"
                                 onClick={(e) => {
                                     setSelectedAB(ab);
                                 }}

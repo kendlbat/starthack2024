@@ -52,7 +52,7 @@ export default function Fachbereiche() {
                         {fachbereiche.map((fachbereich) => (
                             <TableRow
                                 key={fachbereich.uid}
-                                className="cursor-pointer"
+                                className="cursor-pointer hover:bg-gray-100"
                                 onClick={(e) => {
                                     setSelectedFB(fachbereich);
                                 }}

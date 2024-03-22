@@ -43,7 +43,7 @@ export default function Kompetenzen({ bc, unset }) {
                     <BreadcrumbItem
                         key={i}
                         onClick={item.unset}
-                        className="cursor-pointer"
+                        className="cursor-pointer hover:bg-gray-100"
                     >
                         {item.repr}
                     </BreadcrumbItem>

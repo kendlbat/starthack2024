@@ -61,7 +61,7 @@ export default function Faecher({ bc, unset }) {
                         {faecher.map((fach) => (
                             <TableRow
                                 key={fach.uid}
-                                className="cursor-pointer"
+                                className="cursor-pointer hover:bg-gray-100"
                                 onClick={(e) => {
                                     setSelectedFach(fach);
                                 }}

@@ -73,7 +73,7 @@ export default function Themenaspekte({ bc, unset }) {
                         {tas.map((ta) => (
                             <TableRow
                                 key={ta.uid}
-                                className="cursor-pointer"
+                                className="cursor-pointer hover:bg-gray-100"
                                 onClick={(e) => {
                                     setSelectedTA(ta);
                                 }}
