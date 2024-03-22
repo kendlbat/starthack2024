@@ -12,6 +12,7 @@ import SessionProvider from "./SessionProvider";
 import EvaluatePage from "./pages/EvaluatePage";
 import PlanPage from "./pages/PlanPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import HomePage from "./pages/HomePage";
 
 const queryClient = new QueryClient();
 
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "",
-                element: <div>Home</div>,
+                element: <HomePage/>,
             },
             {
                 path: "plan",

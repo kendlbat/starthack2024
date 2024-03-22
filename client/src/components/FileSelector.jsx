@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+import { Document, Page, pdfjs } from 'react-pdf';
 
 // Styling for the container
 const containerStyle = {
   display: 'flex',
+  flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  height: '100vh',
+  minHeight: '100vh',
   backgroundColor: '#f0f0f0',
 };
 
@@ -29,14 +31,41 @@ const labelStyle = {
 
 const FileSelector = () => {
   const [selectedFile, setSelectedFile] = useState(null);
+  const [pdfPages, setPdfPages] = useState([]);
 
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
     
     setSelectedFile(file);
     console.log('File type:', file ? file.type : 'No file selected');
-    if (file.type ==="application/pdf") {
-      let fileStream = await file.arrayBuffer();
+    if (file.type === "application/pdf") {
+      const pdfData = new Uint8Array(await file.arrayBuffer());
+      pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+      pdfjs.getDocument({ data: pdfData }).promise.then(pdf => {
+        let pages = [];
+        for (let i = 1; i <= pdf.numPages; i++) {
+          pdf.getPage(i).then(page => {
+            const scale = 1.5;
+            const viewport = page.getViewport({ scale });
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+            const renderContext = {
+              canvasContext: context,
+              viewport: viewport
+            };
+            page.render(renderContext).promise.then(() => {
+              pages.push(canvas.toDataURL('image/png'));
+              if (pages.length === pdf.numPages) {
+                setPdfPages(pages);
+              }
+            });
+          });
+        }
+      }).catch(error => {
+        console.error('Error loading PDF:', error);
+      });
     }
   };
 
@@ -53,6 +82,14 @@ const FileSelector = () => {
         hidden
       />
       {selectedFile && <p>File: {selectedFile.name}</p>}
+      {pdfPages.length > 0 && (
+        <div>
+          <h2>Converted Pages:</h2>
+          {pdfPages.map((page, index) => (
+            <img key={index} src={page} alt={`Page ${index + 1}`} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
