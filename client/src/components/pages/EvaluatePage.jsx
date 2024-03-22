@@ -5,6 +5,7 @@ import EnterGrading from "../EnterGrading";
 
 export default function EvaluatePage() {
     let [phase, setPhase] = useState(1);
+    let [gradings,setGradings] = useState([]);
 
     return (
         <div>
