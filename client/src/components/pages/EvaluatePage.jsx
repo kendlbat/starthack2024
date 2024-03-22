@@ -17,7 +17,7 @@ export default function EvaluatePage() {
                     <FileSelector setPhase={setPhase} gradings={gradings} setGradings={setGradings} pdfPages={pdfPages} setPdfPages={setPdfPages}></FileSelector>
                 </Tabs.Item>.
                 <Tabs.Item disabled={phase < 2} title="Allocate">
-                    <AllocatePupils></AllocatePupils>
+                    <AllocatePupils pdfPages={pdfPages} setPhase={setPhase} gradings={gradings}></AllocatePupils>
                 </Tabs.Item>
                 <Tabs.Item disabled={phase < 3} title="Insert">
                     <EnterGrading></EnterGrading>
